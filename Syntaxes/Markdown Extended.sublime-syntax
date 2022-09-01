@@ -83,7 +83,7 @@ contexts:
             3: punctuation.definition.fenced.markdown
           pop: true
         - include: scope:source.c
-    - match: '(```|~~~|{%\s*highlight)\s*(cpp)\s*((?:linenos\s*)?%})?$'
+    - match: '(```|~~~|{%\s*highlight)\s*(cpp|c\+\+)\s*((?:linenos\s*)?%})?$'
       captures:
         1: punctuation.definition.fenced.markdown
         2: variable.language.fenced.markdown
@@ -784,22 +784,22 @@ contexts:
         11: string.other.link.description.title.markdown
         12: punctuation.definition.string.begin.markdown
         13: punctuation.definition.string.end.markdown
-    - match: '^(?=\S)(?![=-]{3,}(?=$))'
-      push:
-        - meta_scope: meta.paragraph.markdown
-        - include: html_comment
-        - match: '^(?:\s*$|(?=[ ]{,3}>.))|(?=[ \t]*\n)(?<=^===|^====|=====|^---|^----|-----)[ \t]*\n|(?=^#)'
-          pop: true
-        - include: inline
-        - include: scope:text.html.handlebars
-        - match: '^(={3,})(?=[ \t]*$)'
-          scope: markup.heading.1.markdown
-          captures:
-            1: punctuation.definition.heading.markdown
-        - match: '^(-{3,})(?=[ \t]*$)'
-          scope: markup.heading.2.markdown
-          captures:
-            1: punctuation.definition.heading.markdown
+    # - match: '^(?=\S)(?![=-]{3,}(?=$))'
+    #   push:
+    #     - meta_scope: meta.paragraph.markdown
+    #     - include: html_comment
+    #     - match: '^((?:\s*$|(?=[ ]{,3}>.))|(?=[ \t]*\n)(?=^===|^====|=====|^---|^----|-----)[ \t]|(?=^#))(\n)'
+    #       pop: true
+    #     - include: inline
+    #     - include: scope:text.html.handlebars
+    #     - match: '^(={3,})(?=[ \t]*$)'
+    #       scope: markup.heading.1.markdown
+    #       captures:
+    #         1: punctuation.definition.heading.markdown
+    #     - match: '^(-{3,})(?=[ \t]*$)'
+    #       scope: markup.heading.2.markdown
+    #       captures:
+    #         1: punctuation.definition.heading.markdown
 
   html_comment:
     - match: <!--
